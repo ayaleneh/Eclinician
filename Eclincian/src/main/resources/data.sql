@@ -1,12 +1,12 @@
 -- Inserting into the 'users' table
-INSERT INTO users(fName, lName, email, username, password, role)
-VALUES ('John', 'Doe', 'johndoe@gmail.com', 'jdoe', '123j', 'DOCTOR'),
-       ('Jane', 'Doe', 'janedoe@gmail.com', 'jadoe', '123a', 'PATIENT'),
-       ('Rob', 'Doe', 'Robdoe@gmail.com', 'rdoe', '123r', 'PATIENT'),
-       ('Bob', 'Smith', 'bobsmith@gmail.com', 'bsmith', '123b', 'DOCTOR'),
-       ('Alice', 'Johnson', 'alicejohnson@gmail.com', 'ajohnson', '123aj', 'PATIENT'),
-       ('Charlie', 'Brown', 'charliebrown@gmail.com', 'cbrown', '123cb', 'DOCTOR'),
-       ('Ayalneh', 'Yilma', 'getaunayaleneh@gmail.com', 'ayilma', '12345601', 'ADMIN');
+INSERT INTO users(fName, lName, email,address username, password, role)
+VALUES ('John', 'Doe', 'johndoe@gmail.com','1000 N 4th St,RM 114, Fairfield, IA 52557', 'jdoe', '123j', 'DOCTOR'),
+       ('Jane', 'Doe', 'janedoe@gmail.com','1000 N 4th St,RM 115, Fairfield, IA 52557', 'jadoe', '123a', 'PATIENT'),
+       ('Rob', 'Doe', 'Robdoe@gmail.com','1000 N 4th St,RM 116, Fairfield, IA 52557', 'rdoe', '123r', 'PATIENT'),
+       ('Bob', 'Smith', 'bobsmith@gmail.com','1000 N 4th St,RM 117, Fairfield, IA 52557', 'bsmith', '123b', 'DOCTOR'),
+       ('Alice', 'Johnson', 'alicejohnson@gmail.com','1000 N 4th St,RM 118, Fairfield, IA 52557', 'ajohnson', '123aj', 'PATIENT'),
+       ('Charlie', 'Brown', 'charliebrown@gmail.com','1000 N 4th St,RM 119, Fairfield, IA 52557', 'cbrown', '123cb', 'DOCTOR'),
+       ('Ayalneh', 'Yilma', 'getaunayaleneh@gmail.com','1000 N 4th St,RM 120, Fairfield, IA 52557', 'ayilma', '12345601', 'ADMIN');
 
 -- Inserting into the 'doctor' table
 INSERT INTO doctor(specialization, qualifications, workingHours, user_id)

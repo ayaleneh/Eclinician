@@ -18,7 +18,7 @@ public class User {
     private String lName;
     private String email;
 
-    //private String address; // due to complexity, it would be nice if address will be attribute instead of entity by itself.
+    private String address; // due to the complexity of my project, it would be nice if address will be attribute instead of entity by itself.
     private String username;
     private String password;
     @Enumerated(EnumType.STRING)
