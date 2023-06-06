@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 public class BillServiceImpl implements BillService {
     @Override
     public Bill createBill(Bill bill) {
+        //will get created when a patient visit clinic(or have an appointment with a doctor)
         return null;
     }
 

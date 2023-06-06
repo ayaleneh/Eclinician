@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 public class MedicalRecordServiceImpl implements MedicalRecordService {
     @Override
     public MedicalRecord createMedicalRecord(MedicalRecord medicalRecord) {
+        // will get created by doctor during appointment
         return null;
     }
 
@@ -23,6 +24,6 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 
     @Override
     public void deleteMedicalRecord(Long id) {
-
+        // TODO document why this method is empty
     }
 }

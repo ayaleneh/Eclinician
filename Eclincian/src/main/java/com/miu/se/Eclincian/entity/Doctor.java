@@ -1,5 +1,7 @@
 package com.miu.se.Eclincian.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,7 +24,7 @@ public class Doctor {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany
-    @JoinColumn(name = "doctor_id")
+    @OneToMany(mappedBy = "doctor")
+    @JsonBackReference
     private List<Appointment> appointments;
 }

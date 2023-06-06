@@ -1,5 +1,7 @@
 package com.miu.se.Eclincian.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,12 +27,12 @@ public class Patient {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "patient_id")
     private List<Bill> bills;
 
-    @OneToMany
-    @JoinColumn(name = "patient_id")
+    @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JsonBackReference
     private List<Appointment> appointments;
 
     @OneToOne
