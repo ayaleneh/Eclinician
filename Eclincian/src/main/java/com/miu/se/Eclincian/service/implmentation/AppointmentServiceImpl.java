@@ -3,6 +3,7 @@ package com.miu.se.Eclincian.service.implmentation;
 import com.miu.se.Eclincian.entity.Appointment;
 import com.miu.se.Eclincian.repository.AppointmentRepository;
 import com.miu.se.Eclincian.service.AppointmentService;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @Service
 @Slf4j
+@Transactional
 public class AppointmentServiceImpl implements AppointmentService {
 
     private final AppointmentRepository appointmentRepository;

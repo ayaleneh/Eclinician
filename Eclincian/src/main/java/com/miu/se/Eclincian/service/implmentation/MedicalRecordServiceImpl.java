@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 public class MedicalRecordServiceImpl implements MedicalRecordService {
     @Override
     public MedicalRecord createMedicalRecord(MedicalRecord medicalRecord) {
-        // will get created by doctor during appointment
+        // will get created by doctor during appointment or doctor
+        // can create medical record for a specific patient by searching for his patient
         return null;
     }
 
