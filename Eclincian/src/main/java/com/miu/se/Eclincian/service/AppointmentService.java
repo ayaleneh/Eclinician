@@ -5,7 +5,7 @@ import com.miu.se.Eclincian.entity.Appointment;
 import java.util.List;
 
 public interface AppointmentService {
-    public Appointment createAppointment(Appointment appointment);
+    public Appointment createAppointment(Long patientId,Appointment appointment);
     public List<Appointment> getAllAppointment();
 
     public Appointment getAppointmentById(Long id);

@@ -31,5 +31,14 @@ public class AdminController {
     public List<Appointment> getAllAppointments(){
       return appointmentService.getAllAppointment();
   }
-
+    /*    @PostMapping("/create")
+    public ResponseEntity<Patient> createPatient(@RequestBody Patient patient) {
+        Patient newPatient = patientService.createPatient(patient);
+        if (newPatient == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(newPatient, HttpStatus.CREATED);
+        }
+    }
+    * */
 }

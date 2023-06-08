@@ -24,7 +24,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 
     @Override
-    public Appointment createAppointment(Appointment appointment) {
+    public Appointment createAppointment(Long patientId,Appointment appointment) {
         //the relationship b/n appointment and user(both doctor and patient) are oneToMany,
         // so I have to make sure that they create many appointment in d/t
         // times(we can't have more than one appointment in one specific time)

@@ -12,20 +12,20 @@ VALUES ('John', 'Doe', 'johndoe@gmail.com', '1000 N 4th St,RM 114, Fairfield, IA
         '12345601', 'ADMIN');
 
 -- Inserting into the 'doctor' table
-INSERT INTO doctor(specialization, qualifications, workingHours, user_id)
-VALUES ('Cardiology', 'MBBS, MD', '09:00-17:00', 1),
-       ('Dermatology', 'MBBS, MD', '10:00-18:00', 4),
-       ('Orthopedics', 'MBBS, MS', '08:00-16:00', 6);
+INSERT INTO doctor(user_id,specialization, qualifications, workingHours)
+VALUES (1,'Cardiology', 'MBBS, MD', '09:00-17:00'),
+       (4,'Dermatology', 'MBBS, MD', '10:00-18:00'),
+       (6,'Orthopedics', 'MBBS, MS', '08:00-16:00');
 INSERT INTO admin(user_id)
 VALUES (7);
 
 -- Inserting into the 'medicalRecord' table
-INSERT INTO medicalRecord(date, diagnosedCondition, treatmentPlan, doctorNotes)
-VALUES ('2022-01-01', 'Hypertension', 'Regular exercise and low salt diet', 'Stable'),
-       ('2022-02-02', 'Acne', 'Topical creams and cleansers', 'Improving'),
-       ('2022-03-03', 'Back Pain', 'Physical therapy and rest', 'Needs follow up'),
-       ('2022-04-04', 'X-ray shows fracture', 'Casting and rest', 'Needs follow up'),
-       ('2022-05-05', 'Migraines', 'Pain management and avoiding triggers', 'Stable');
+INSERT INTO medicalRecord(date, diagnosedCondition, treatmentPlan, doctorNotes,doctorid)
+VALUES ('2022-01-01', 'Hypertension', 'Regular exercise and low salt diet', 'Stable',1),
+       ('2022-02-02', 'Acne', 'Topical creams and cleansers', 'Improving',4),
+       ('2022-03-03', 'Back Pain', 'Physical therapy and rest', 'Needs follow up',6),
+       ('2022-04-04', 'X-ray shows fracture', 'Casting and rest', 'Needs follow up',4),
+       ('2022-05-05', 'Migraines', 'Pain management and avoiding triggers', 'Stable',6);
 
 -- Inserting into the 'patient' table
 INSERT INTO patient(dateOfBirth, emergencyContact, contactNumber, user_id, medicalrecord_id)

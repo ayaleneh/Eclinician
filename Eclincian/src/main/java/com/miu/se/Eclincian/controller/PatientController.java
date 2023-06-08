@@ -4,10 +4,12 @@ import com.miu.se.Eclincian.entity.Appointment;
 import com.miu.se.Eclincian.service.AppointmentService;
 import com.miu.se.Eclincian.service.PatientService;
 import java.util.Collections;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import com.miu.se.Eclincian.service.implmentation.PatientServiceImpl;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class PatientController {
      And I should be able to cancel an existing appointment.
     * */
 
-    private final PatientService patientService;
+    private final PatientService patientService;//@Qualifier("PatientServiceImpl") if we have multiple implementation of PatientService
     private final AppointmentService appointmentService;
 
 
@@ -34,14 +36,26 @@ public class PatientController {
         this.appointmentService = appointmentService;
     }
 
-    @GetMapping("/{patientId}")//All Appointment
+    @GetMapping("/{patientId}/appointments")//All Appointment
     List<Appointment> getAllAppointmentForCurrentPatient(@PathVariable Long patientId) {
         return patientService.getAppointments(patientId);
     }
 
-    @GetMapping("/upcoming/{patientId}")
+
+    @GetMapping("/{patientId}/upcoming")
     List<Appointment> getAllUpcomingAppointmentForCurrentPatient(@PathVariable Long patientId){
         return Collections.emptyList();
+    }
+
+    @PostMapping("/{patientId}/appointments")
+    public ResponseEntity<Appointment> createAppointment(@PathVariable Long patientId,
+                                                         @RequestBody Appointment appointment) {
+        Appointment newAppointment = appointmentService.createAppointment(patientId, appointment);
+        if (newAppointment == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(newAppointment, HttpStatus.CREATED);
+        }
     }
 
 }

@@ -19,4 +19,8 @@ public class MedicalRecord {
     private String treatmentPlan;
     @Column(name = "doctornotes")
     private String doctorNotes;
+
+    @ManyToOne
+    @JoinColumn(name = "doctorid")
+    private Doctor doctor;
 }
