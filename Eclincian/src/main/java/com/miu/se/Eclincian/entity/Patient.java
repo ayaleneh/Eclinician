@@ -15,6 +15,12 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @Column(name = "dateofbirth")
     private LocalDate dateOfBirth;
     @Column(name = "emergencycontact")
@@ -22,10 +28,6 @@ public class Patient {
     @Column(name = "contactnumber")
     private String contactNumber;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "user_id")
-    private User user;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "patient_id")

@@ -24,6 +24,9 @@ public class Doctor {
     @Column(name = "workinghours")
     private String workingHours;
 
+    @Column(name = "phonenumber")
+    private String PhoneNumber;
+
 
     @OneToMany(mappedBy = "doctor")
     @JsonBackReference

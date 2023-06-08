@@ -12,26 +12,27 @@ VALUES ('John', 'Doe', 'johndoe@gmail.com', '1000 N 4th St,RM 114, Fairfield, IA
         '12345601', 'ADMIN');
 
 -- Inserting into the 'doctor' table
-INSERT INTO doctor(user_id,specialization, qualifications, workingHours)
-VALUES (1,'Cardiology', 'MBBS, MD', '09:00-17:00'),
-       (4,'Dermatology', 'MBBS, MD', '10:00-18:00'),
-       (6,'Orthopedics', 'MBBS, MS', '08:00-16:00');
+INSERT INTO doctor(user_id, specialization, qualifications, workingHours, PhoneNumber)
+VALUES (1, 'Cardiology', 'MBBS, MD', '09:00-17:00', '2404632079'),
+       (4, 'Dermatology', 'MBBS, MD', '10:00-18:00', '2414642080'),
+       (6, 'Orthopedics', 'MBBS, MS', '08:00-16:00', '2424652081');
+
 INSERT INTO admin(user_id)
 VALUES (7);
 
 -- Inserting into the 'medicalRecord' table
-INSERT INTO medicalRecord(date, diagnosedCondition, treatmentPlan, doctorNotes,doctorid)
-VALUES ('2022-01-01', 'Hypertension', 'Regular exercise and low salt diet', 'Stable',1),
-       ('2022-02-02', 'Acne', 'Topical creams and cleansers', 'Improving',4),
-       ('2022-03-03', 'Back Pain', 'Physical therapy and rest', 'Needs follow up',6),
-       ('2022-04-04', 'X-ray shows fracture', 'Casting and rest', 'Needs follow up',4),
-       ('2022-05-05', 'Migraines', 'Pain management and avoiding triggers', 'Stable',6);
+INSERT INTO medicalRecord(date, diagnosedCondition, treatmentPlan, doctorNotes, doctorid)
+VALUES ('2022-01-01', 'Hypertension', 'Regular exercise and low salt diet', 'Stable', 1),
+       ('2022-02-02', 'Acne', 'Topical creams and cleansers', 'Improving', 4),
+       ('2022-03-03', 'Back Pain', 'Physical therapy and rest', 'Needs follow up', 6),
+       ('2022-04-04', 'X-ray shows fracture', 'Casting and rest', 'Needs follow up', 4),
+       ('2022-05-05', 'Migraines', 'Pain management and avoiding triggers', 'Stable', 6);
 
 -- Inserting into the 'patient' table
-INSERT INTO patient(dateOfBirth, emergencyContact, contactNumber, user_id, medicalrecord_id)
-VALUES ('1980-01-01', '112', '1234567890', 2, 1),
-       ('1985-02-02', '112', '0987654321', 5, 2),
-       ('1990-03-03', '112', '1111111111', 3, 3);
+INSERT INTO patient(user_id, dateOfBirth, emergencyContact, contactNumber, medicalrecord_id)
+VALUES (2, '1980-01-01', '112', '1234567890', 1),
+       (5, '1985-02-02', '112', '0987654321', 2),
+       (3, '1990-03-03', '112', '1111111111', 3);
 
 -- Inserting into the 'appointment' table
 INSERT INTO appointment(appointmentTime, appointmentDate, doctor_id, patient_id)
