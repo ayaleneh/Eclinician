@@ -1,6 +1,0 @@
-
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‚”´·úÿÿÿÿ
-k
-java:S1128"PRemove this unused import 'org.springframework.web.bind.annotation.PostMapping'.(äƒà°ùÿÿÿÿ
-L
-java:S1068"1Remove this unused "doctorService" private field.(›Ñîìÿÿÿÿÿ

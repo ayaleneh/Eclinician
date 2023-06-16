@@ -10,7 +10,7 @@ public interface AppointmentService {
 
     public Appointment getAppointmentById(Long id);
 
-    public Appointment updateAppointment(Long appointmentId,Appointment appointment);
+    public Appointment updateAppointment(Long patientId,Long appointmentId,Appointment appointment);
 
-    public void deleteAppointment(Long id);
+    public void deleteAppointment(Long patientId,Long appointmentId);
 }

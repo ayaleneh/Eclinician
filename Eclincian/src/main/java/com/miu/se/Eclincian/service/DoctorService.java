@@ -2,17 +2,28 @@ package com.miu.se.Eclincian.service;
 
 import com.miu.se.Eclincian.entity.Appointment;
 import com.miu.se.Eclincian.entity.Doctor;
+import com.miu.se.Eclincian.entity.MedicalRecord;
+import com.miu.se.Eclincian.entity.Patient;
 
 import java.util.List;
 
 public interface DoctorService {
+
+    public List<Doctor> getAllDoctors();
     public Doctor createDoctor(Doctor doctor);
 
     public Doctor getDoctorById(Long id);
 
-    public Doctor updateDoctor(Doctor doctor);
+    public Doctor updateDoctor(Long doctorId,Doctor doctor);
 
     public void deleteDoctor(Long id);
 
-    public List<Appointment> getAppointments(Long doctorId);
+    public List<Appointment> getAllAppointmentsForCurrentDoctor(Long doctorId); //get all appointments including the passed appointment for the current doctor
+
+    public List<Appointment> getAllUpComingAppointments(Long doctorId);// get all upcoming appointments for the current doctor
+
+    public List<Patient> getAllPatientBelongsToCurrentDoctor(Long doctorId);//get a list of patient belongs to the current doctor
+    public MedicalRecord addMedicalRecordForSelectedPatient(Long doctorId,Long patientId, MedicalRecord medicalRecord);// check if the patient belongs to that specific doctor.
+
+    public List<MedicalRecord> getAllMedicalRecordForSelectedPatient(Long patientId, Long doctorId);
 }

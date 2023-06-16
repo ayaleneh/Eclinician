@@ -34,13 +34,22 @@ VALUES (2, '1980-01-01', '112', '1234567890', 1),
        (5, '1985-02-02', '112', '0987654321', 2),
        (3, '1990-03-03', '112', '1111111111', 3);
 
+
+-- Creating and inserting into the 'doctor_patient' table
+INSERT INTO doctor_patient(doctor_id, patient_id)
+VALUES (1, 2),
+       (1, 3),
+       (4, 5),
+       (6, 3),
+       (6, 2);
+
 -- Inserting into the 'appointment' table
-INSERT INTO appointment(appointmentTime, appointmentDate, doctor_id, patient_id)
-VALUES ('10:00:00', '2023-01-01', 1, 2),
-       ('10:30:00', '2023-01-02', 1, 3),
-       ('11:00:00', '2023-01-03', 4, 5),
-       ('11:30:00', '2023-01-04', 6, 3),
-       ('12:00:00', '2023-01-05', 6, 2);
+INSERT INTO appointment(appointmentTime, appointmentDate,appointmentLocation, doctor_id, patient_id)
+VALUES ('10:00:00', '2023-01-01','123 South Ave', 1, 2),
+       ('10:30:00', '2023-01-02','123 South Ave', 1, 3),
+       ('11:00:00', '2023-01-03','123 South Ave', 4, 5),
+       ('11:30:00', '2023-01-04','123 South Ave', 6, 3),
+       ('12:00:00', '2023-01-05','123 South Ave', 6, 2);
 
 -- Inserting into the 'bill' table
 INSERT INTO bill(amount, issueDate, patient_id)

@@ -1,7 +1,9 @@
 package com.miu.se.Eclincian.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -11,6 +13,9 @@ import java.time.LocalTime;
 @Entity
 @Table(name = "appointment")
 @Data
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id", scope = Appointment.class)
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,13 +25,14 @@ public class Appointment {
     @Column(name = "appointmentdate")
     private LocalDate appointmentDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @Column(name = "appointmentlocation")
+    private String appointmentLocation;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "patient_id")
-    @JsonManagedReference //the Managed Reference have to be the side that we want to display the data
     private Patient patient;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "doctor_id")
-    @JsonManagedReference
     private Doctor doctor;
 }
