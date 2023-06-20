@@ -4,6 +4,7 @@ import com.miu.se.Eclincian.entity.Appointment;
 import com.miu.se.Eclincian.entity.Doctor;
 import com.miu.se.Eclincian.entity.MedicalRecord;
 import com.miu.se.Eclincian.entity.Patient;
+import com.miu.se.Eclincian.helper.GetUser;
 import com.miu.se.Eclincian.repository.AppointmentRepository;
 import com.miu.se.Eclincian.repository.DoctorRepository;
 import com.miu.se.Eclincian.repository.MedicalRecordRepository;
@@ -23,14 +24,18 @@ public class DoctorServiceImpl implements DoctorService {
     private final PatientRepository patientRepository;
     private final MedicalRecordRepository medicalRecordRepository;
 
+    private final GetUser getUser;
+
     public DoctorServiceImpl(DoctorRepository doctorRepository,
                              AppointmentRepository appointmentRepository,
                              PatientRepository patientRepository,
-                             MedicalRecordRepository medicalRecordRepository) {
+                             MedicalRecordRepository medicalRecordRepository,
+                             GetUser getUser) {
         this.doctorRepository = doctorRepository;
         this.appointmentRepository = appointmentRepository;
         this.patientRepository = patientRepository;
         this.medicalRecordRepository = medicalRecordRepository;
+        this.getUser = getUser;
     }
 
 
@@ -68,22 +73,25 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public List<Appointment> getAllAppointmentsForCurrentDoctor(Long doctorId) {
+    public List<Appointment> getAllAppointmentsForCurrentDoctor() {
+        Long doctorId = getUser.getUser().getId();
         return appointmentRepository.getAllAppointmentsByDoctorId(doctorId);
     }
 
     @Override
-    public List<Appointment> getAllUpComingAppointments(Long doctorId) {
+    public List<Appointment> getAllUpComingAppointments() {
+        Long doctorId = getUser.getUser().getId();
         return appointmentRepository.getAllUpComingAppointmentForCurrentDoctor(doctorId);
     }
 
     @Override
-    public List<Patient> getAllPatientBelongsToCurrentDoctor(Long doctorId) {
+    public List<Patient> getAllPatientBelongsToCurrentDoctor() {
+        Long doctorId = getUser.getUser().getId();
         return doctorRepository.getAllPatients(doctorId);
     }
 
 
-    //check if the patient belongs to that specific doctor
+    //need to look at "addMedicalRecordForSelectedPatient"
     @Override
     @Transactional
     public MedicalRecord addMedicalRecordForSelectedPatient(Long doctorId, Long patientId, MedicalRecord medicalRecord) {
@@ -94,12 +102,13 @@ public class DoctorServiceImpl implements DoctorService {
             throw new IllegalArgumentException("Patient does not belong to the doctor");
         }
 
-        medicalRecord = medicalRecordRepository.save(medicalRecord);
-        return medicalRecord;
+        return medicalRecordRepository.save(medicalRecord);
+
     }
 
     @Override
-    public List<MedicalRecord> getAllMedicalRecordForSelectedPatient(Long patientId, Long doctorId) {
+    public List<MedicalRecord> getAllMedicalRecordForSelectedPatient(Long patientId) {
+        Long doctorId= getUser.getUser().getId();
         return medicalRecordRepository.getMedicalRecordsByPatientIdAndDoctorId(patientId, doctorId);
     }
 

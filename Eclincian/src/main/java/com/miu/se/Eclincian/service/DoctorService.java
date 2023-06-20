@@ -18,12 +18,12 @@ public interface DoctorService {
 
     public void deleteDoctor(Long id);
 
-    public List<Appointment> getAllAppointmentsForCurrentDoctor(Long doctorId); //get all appointments including the passed appointment for the current doctor
+    public List<Appointment> getAllAppointmentsForCurrentDoctor(); //get all appointments including the passed appointment for the current doctor
 
-    public List<Appointment> getAllUpComingAppointments(Long doctorId);// get all upcoming appointments for the current doctor
+    public List<Appointment> getAllUpComingAppointments();// get all upcoming appointments for the current doctor
 
-    public List<Patient> getAllPatientBelongsToCurrentDoctor(Long doctorId);//get a list of patient belongs to the current doctor
+    public List<Patient> getAllPatientBelongsToCurrentDoctor();//get a list of patient belongs to the current doctor
     public MedicalRecord addMedicalRecordForSelectedPatient(Long doctorId,Long patientId, MedicalRecord medicalRecord);// check if the patient belongs to that specific doctor.
 
-    public List<MedicalRecord> getAllMedicalRecordForSelectedPatient(Long patientId, Long doctorId);
+    public List<MedicalRecord> getAllMedicalRecordForSelectedPatient(Long patientId);
 }

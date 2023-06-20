@@ -20,6 +20,7 @@ public class PatientController {
     private final AppointmentService appointmentService;
 
 
+
     public PatientController(PatientService patientService,
                              AppointmentService appointmentService) {
         this.patientService = patientService;

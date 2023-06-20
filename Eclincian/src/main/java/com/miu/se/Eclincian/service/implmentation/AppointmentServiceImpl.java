@@ -88,8 +88,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public List<AppointmentResponseDTO> getAllAppointment() {
         List<Appointment> appointments= appointmentRepository.findAll();
-        return appointments.stream().map(appointmentMapper::convertToDTO).
-                collect(Collectors.toList());
+        return appointments.stream().map(appointmentMapper::convertToDTO).toList();
     }
 
     @Override
