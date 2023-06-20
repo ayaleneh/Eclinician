@@ -1,0 +1,101 @@
+.divhome {
+  font-family: Arial, sans-serif;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #007bff;
+  color: white;
+  z-index: 1000;
+}
+
+nav h1 {
+  font-size: 1.5em;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.nav-right {
+  align-self: flex-end;
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #218838;
+}
+
+.header-content {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #f8f9fa;
+}
+
+.header-content h2 {
+  font-size: 2.5em;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.header-content p {
+  font-size: 1.2em;
+  color: #6c757d;
+}
+
+.services {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.service {
+  width: 200px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.service p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.service img {
+  width: 200px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #007bff;
+  color: white;
+}
+nav, footer {
+  background-color: #007bff;
+}

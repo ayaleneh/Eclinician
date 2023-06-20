@@ -1,9 +1,6 @@
 package com.miu.se.Eclincian.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -28,11 +25,13 @@ public class Appointment {
     @Column(name = "appointmentlocation")
     private String appointmentLocation;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "patient_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Patient patient;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "doctor_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Doctor doctor;
 }

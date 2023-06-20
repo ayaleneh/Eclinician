@@ -3,6 +3,7 @@ package com.miu.se.Eclincian.controller;
 import com.miu.se.Eclincian.entity.Appointment;
 import com.miu.se.Eclincian.entity.Bill;
 import com.miu.se.Eclincian.entity.MedicalRecord;
+import com.miu.se.Eclincian.entity.dto.response.AppointmentResponseDTO;
 import com.miu.se.Eclincian.service.AppointmentService;
 import com.miu.se.Eclincian.service.PatientService;
 import org.springframework.http.HttpStatus;
@@ -14,68 +15,56 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/patient")
 public class PatientController {
-    //for UI give a way for a patient to select the date and time by providing interactive date/time
-    //UI
-    //make the doctor list available in dropbox and let the patient select their doctor.
-    /*Given that I am a registered patient and logged into my account,
-     When I navigate to my appointments page,
-     Then I should be able to see all upcoming appointments,
-     And I should be able to book a new appointment,
-     And I should be able to reschedule an existing appointment,(@PatchMapping)
-     And I should be able to cancel an existing appointment.
-    * */
 
-    private final PatientService patientService;//@Qualifier("PatientServiceImpl") if we have multiple implementation of PatientService
+    private final PatientService patientService;
     private final AppointmentService appointmentService;
 
 
-    public PatientController(PatientService patientService, AppointmentService appointmentService) {
+    public PatientController(PatientService patientService,
+                             AppointmentService appointmentService) {
         this.patientService = patientService;
         this.appointmentService = appointmentService;
     }
 
-    @GetMapping("/{patientId}/appointments")
-    //All Appointment
-    public ResponseEntity<List<Appointment>> getAllAppointmentsForCurrentPatient(@PathVariable Long patientId) {
-        return new ResponseEntity<>(patientService.getAllAppointments(patientId), HttpStatus.OK);
+    @GetMapping("/appointments")
+    public ResponseEntity<List<AppointmentResponseDTO>> getAllAppointmentsForCurrentPatient() {
+        List<AppointmentResponseDTO> appointments = patientService.getAllAppointments();
+        return new ResponseEntity<>(appointments, HttpStatus.OK);
     }
 
 
-    @GetMapping("/{patientId}/upcoming")
-    public ResponseEntity<List<Appointment>> getAllUpcomingAppointmentsForCurrentPatient(@PathVariable Long patientId) {
-        return new ResponseEntity<>(patientService.getAllUpComingAppointments(patientId), HttpStatus.OK);
+    @GetMapping("/upcoming")
+    public ResponseEntity<List<AppointmentResponseDTO>> getAllUpcomingAppointmentsForCurrentPatient() {
+        return new ResponseEntity<>(patientService.getAllUpComingAppointments(), HttpStatus.OK);
     }
 
-    @PostMapping("/{patientId}/appointments")//patient will have drop down doctor option
-    public ResponseEntity<Appointment> createAppointment(@PathVariable Long patientId,
-                                                         @RequestBody Appointment appointment) {
-        Appointment newAppointment = appointmentService.createAppointment(patientId, appointment);
+    @PostMapping("/appointments")//patient will have drop down doctor option
+    public ResponseEntity<Appointment> createAppointment(@RequestBody Appointment appointment) {
+        Appointment newAppointment = appointmentService.createAppointment(appointment);
         if (newAppointment == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } else {
             return new ResponseEntity<>(newAppointment, HttpStatus.CREATED);
         }
     }
 
     //@Valid---if we have validation in our entity
-    @PutMapping("/{patientId}/update-appointments/{appointmentId}")
-    public ResponseEntity<Appointment> updateExistingAppointment(@PathVariable Long patientId,
-                                                                 @PathVariable Long appointmentId,
+    @PutMapping("/update-appointments/{appointmentId}")
+    public ResponseEntity<Appointment> updateExistingAppointment(@PathVariable Long appointmentId,
                                                                  @RequestBody Appointment appointment) {
-        Appointment updatedAppointment = appointmentService.updateAppointment(patientId, appointmentId, appointment);
+        Appointment updatedAppointment = appointmentService.updateAppointment(appointmentId, appointment);
         if (updatedAppointment == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(updatedAppointment, HttpStatus.OK); // Update from CREATED to OK
+            return new ResponseEntity<>(updatedAppointment, HttpStatus.OK);
         }
     }
 
 
-    @DeleteMapping("/{patientId}/appointments/{appointmentId}")//working
-    public ResponseEntity<?> deleteAppointmentById(@PathVariable Long patientId,
-                                                   @PathVariable Long appointmentId) {
+    @DeleteMapping("/appointments/{appointmentId}")//working
+    public ResponseEntity<?> deleteAppointmentById(@PathVariable Long appointmentId) {
         try {
-            appointmentService.deleteAppointment(patientId, appointmentId);
+            appointmentService.deleteAppointment(appointmentId);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -83,14 +72,14 @@ public class PatientController {
     }
 
 
-    @GetMapping("/{patientId}/medical-record")
-    public MedicalRecord getAllMedicalRecordForCurrentPatient(@PathVariable Long patientId) {
-        return patientService.getMedicalRecord(patientId);
+    @GetMapping("/medical-record")
+    public MedicalRecord getAllMedicalRecordForCurrentPatient() {
+        return patientService.getMedicalRecord();
     }
 
-    @GetMapping("/{patientId}/get-bills")
-    public List<Bill> getAllBills(@PathVariable Long patientId) {
-        return patientService.getAllBillsBelongsToCurrentPatient(patientId);
+    @GetMapping("/get-bills")
+    public List<Bill> getAllBills() {
+        return patientService.getAllBillsBelongsToCurrentPatient();
     }
 
 }

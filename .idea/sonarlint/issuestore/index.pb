@@ -1,19 +1,11 @@
 
 v
 FEclincian/src/main/java/com/miu/se/Eclincian/EclincianApplication.java,c\8\c802df39c18900573baa6fbfd5a0bbfa1e15618e
-‡
-WEclincian/src/main/java/com/miu/se/Eclincian/service/implmentation/BillServiceImpl.java,0\6\0631eb88d0b55dac105f432588e04acdd42938c2
 
 `Eclincian/src/main/java/com/miu/se/Eclincian/service/implmentation/MedicalRecordServiceImpl.java,8\8\88de9c860bb0f210996c49221ae74c7023f6ba3e
-n
->Eclincian/src/main/java/com/miu/se/Eclincian/entity/Roles.java,0\b\0bc9beef5d09d57b1e8e6be6e25a8282298cb014
 r
 BEclincian/src/main/java/com/miu/se/Eclincian/config/WebConfig.java,f\e\fe9b0da78af65ee8b4c03d3044377c9bc9576330
 {
 KEclincian/src/main/java/com/miu/se/Eclincian/repository/BillRepository.java,9\0\90db4eb215aa536b1fd7dba7d9b35c8b6903518f
 }
 MEclincian/src/main/java/com/miu/se/Eclincian/repository/DoctorRepository.java,0\0\00c223d7af1c3ed2a8395a69328a1dd5e7badc49
-„
-TEclincian/src/main/java/com/miu/se/Eclincian/repository/MedicalRecordRepository.java,8\7\876a7c07f910c0f42658d279e7a1a50d3d46f081
-A
-Eclincian/pom.xml,f\b\fbb3ebfe44c8b9cc43bfc3ce01943438bb09bbc6

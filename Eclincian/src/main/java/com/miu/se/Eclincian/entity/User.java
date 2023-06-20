@@ -3,6 +3,8 @@ package com.miu.se.Eclincian.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 @Data
@@ -21,6 +23,8 @@ public class User {
     private String address; // due to the complexity of my project, it would be nice if address will be attribute instead of entity by itself.
     private String username;
     private String password;
-    @Enumerated(EnumType.STRING)
-    private Roles role;
+    //    @Enumerated(EnumType.STRING)
+//    private Roles role;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<Role> role;
 }
