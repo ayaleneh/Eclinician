@@ -17,10 +17,10 @@ import java.util.Optional;
 public interface AppointmentRepository extends JpaRepository<Appointment,Long> {
     Optional<Appointment> getAppointmentByAppointmentDateAndAppointmentTime(LocalDate date, LocalTime time);
 
-    @Query("select app from Appointment  app where app.patient.id= :patientId")
+    @Query("select app from Appointment  app where app.patient.id= :patientId order by app.appointmentDate DESC , app.appointmentTime DESC ")
     List<Appointment> getAllAppointmentsForCurrentPatient(@Param("patientId") Long patientId);
 
-    @Query("SELECT app FROM Appointment app WHERE app.appointmentDate >= CURRENT_DATE AND app.patient.id= :patientId")
+    @Query("SELECT app FROM Appointment app WHERE app.appointmentDate >= CURRENT_DATE AND app.patient.id= :patientId order by app.appointmentDate ASC , app.appointmentTime ASC")
     List<Appointment> getAllUpComingAppointmentForCurrentPatient(Long patientId);
 
 
@@ -31,10 +31,10 @@ public interface AppointmentRepository extends JpaRepository<Appointment,Long> {
 
 
     //Doctor
-    @Query("select app from Appointment  app where app.doctor.id= :doctorId")
+    @Query("select app from Appointment  app where app.doctor.id= :doctorId order by app.appointmentDate ASC , app.appointmentTime ASC")
     public List<Appointment> getAllAppointmentsByDoctorId(Long doctorId);
 
-    @Query("SELECT app FROM Appointment app WHERE app.appointmentDate >= CURRENT_DATE AND app.doctor.id= :doctorId")
+    @Query("SELECT app FROM Appointment app WHERE app.appointmentDate >= CURRENT_DATE AND app.doctor.id= :doctorId order by app.appointmentDate ASC , app.appointmentTime ASC")
     List<Appointment> getAllUpComingAppointmentForCurrentDoctor(Long doctorId);
 
 

@@ -56,7 +56,10 @@ public class SecurityConfig {
 
 
                 .requestMatchers("/api/v1/authenticate/**").permitAll()
-                .requestMatchers("/api/v1/patient/**").hasAnyAuthority(Roles.PATIENT.name())
+                .requestMatchers(HttpMethod.GET,"/api/v1/patient/**").hasAnyAuthority(Roles.PATIENT.name())
+                .requestMatchers(HttpMethod.POST,"/api/v1/patient/**").hasAnyAuthority(Roles.PATIENT.name())
+                .requestMatchers(HttpMethod.DELETE,"/api/v1/patient/**").hasAnyAuthority(Roles.PATIENT.name())
+                .requestMatchers(HttpMethod.PUT,"/api/v1/patient/**").hasAnyAuthority(Roles.PATIENT.name())
                 .requestMatchers("/api/v1/doctor/**").hasAnyAuthority(Roles.DOCTOR.name())
                 .requestMatchers("/api/v1/admin/**").hasAnyAuthority(Roles.ADMIN.name())
 

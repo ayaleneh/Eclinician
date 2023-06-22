@@ -1,6 +1,6 @@
 package com.miu.se.Eclincian.service.implmentation;
 
-import com.miu.se.Eclincian.Contract.AppointmentMapper;
+import com.miu.se.Eclincian.entity.dto.mapper.AppointmentMapper;
 import com.miu.se.Eclincian.entity.Appointment;
 import com.miu.se.Eclincian.entity.Doctor;
 import com.miu.se.Eclincian.entity.Patient;
@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j

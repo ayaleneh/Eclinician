@@ -1,13 +1,15 @@
 package com.miu.se.Eclincian.service.implmentation;
 
-import com.miu.se.Eclincian.Contract.AppointmentMapper;
-import com.miu.se.Eclincian.entity.Appointment;
-import com.miu.se.Eclincian.entity.Bill;
-import com.miu.se.Eclincian.entity.MedicalRecord;
-import com.miu.se.Eclincian.entity.Patient;
+import com.miu.se.Eclincian.entity.*;
+import com.miu.se.Eclincian.entity.dto.mapper.AppointmentMapper;
+import com.miu.se.Eclincian.entity.dto.mapper.DoctorMapper;
+import com.miu.se.Eclincian.entity.dto.mapper.MedicalRecordMapper;
 import com.miu.se.Eclincian.entity.dto.response.AppointmentResponseDTO;
+import com.miu.se.Eclincian.entity.dto.response.DoctorResponseDTO;
+import com.miu.se.Eclincian.entity.dto.response.MedicalRecordResponseDTO;
 import com.miu.se.Eclincian.helper.GetUser;
 import com.miu.se.Eclincian.repository.AppointmentRepository;
+import com.miu.se.Eclincian.repository.DoctorRepository;
 import com.miu.se.Eclincian.repository.MedicalRecordRepository;
 import com.miu.se.Eclincian.repository.PatientRepository;
 import com.miu.se.Eclincian.service.PatientService;
@@ -24,20 +26,31 @@ public class PatientServiceImpl implements PatientService {
     private final PatientRepository patientRepository;
     private final AppointmentRepository appointmentRepository;
     private final AppointmentMapper appointmentMapper;
+    private  final DoctorMapper doctorMapper;
+    private final MedicalRecordMapper medicalRecordMapper;
 
     private final MedicalRecordRepository medicalRecordRepository;
 
     private final GetUser getUser;
+    private final DoctorRepository doctorRepository;
+
 
     public PatientServiceImpl(PatientRepository patientRepository,
                               AppointmentRepository appointmentRepository,
                               AppointmentMapper appointmentMapper,
-                              MedicalRecordRepository medicalRecordRepository, GetUser getUser) {
+                              DoctorMapper doctorMapper,
+                              MedicalRecordMapper medicalRecordMapper,
+                              MedicalRecordRepository medicalRecordRepository,
+                              GetUser getUser,
+                              DoctorRepository doctorRepository) {
         this.patientRepository = patientRepository;
         this.appointmentRepository = appointmentRepository;
         this.appointmentMapper = appointmentMapper;
+        this.doctorMapper = doctorMapper;
+        this.medicalRecordMapper = medicalRecordMapper;
         this.medicalRecordRepository = medicalRecordRepository;
         this.getUser = getUser;
+        this.doctorRepository = doctorRepository;
     }
 
 
@@ -58,9 +71,9 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient updatePatient(Long patientId,Patient patient) {
+    public Patient updatePatient(Long patientId, Patient patient) {
 
-      //  Long patientId = getUser.getUser().getId();
+        //  Long patientId = getUser.getUser().getId();
 
         Optional<Patient> existingPatient = patientRepository.findById(patientId);
         if (existingPatient.isPresent()) {
@@ -74,7 +87,7 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public void deletePatient(Long patientId) {
-       // Long patientId = getUser.getUser().getId();
+        // Long patientId = getUser.getUser().getId();
         patientRepository.deleteById(patientId);
     }
 
@@ -92,22 +105,31 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public List<AppointmentResponseDTO> getAllUpComingAppointments() {
         Long patientId = getUser.getUser().getId();
-        List<Appointment> appointments= appointmentRepository.getAllUpComingAppointmentForCurrentPatient(patientId);
+        List<Appointment> appointments = appointmentRepository.getAllUpComingAppointmentForCurrentPatient(patientId);
         return appointments.stream()
                 .map(appointmentMapper::convertToDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public MedicalRecord getMedicalRecord() {
+    public MedicalRecordResponseDTO getMedicalRecord() {
         Long patientId = getUser.getUser().getId();
-        return patientRepository.getAllMedicalRecordByPatientId(patientId);
+        MedicalRecord medicalRecord= patientRepository.getAllMedicalRecordByPatientId(patientId);
+        return medicalRecordMapper.convertToDTO(medicalRecord);
     }
 
     @Override
     public List<Bill> getAllBillsBelongsToCurrentPatient() {
         Long patientId = getUser.getUser().getId();
         return patientRepository.getAllBillsBelongToCurrentPatient(patientId);
+    }
+
+    @Override
+    public List<DoctorResponseDTO> getAllDoctors() {
+        List<Doctor> doctors=doctorRepository.findAll();
+        return doctors.stream()
+                .map(doctorMapper::convertToDTO)
+                .toList();
     }
 
 }

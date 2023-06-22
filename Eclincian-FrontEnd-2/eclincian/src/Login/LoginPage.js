@@ -95,6 +95,7 @@ const LoginPage = () => {
         setUser({
           isAuthenticated: true,
           role: "admin",
+          id:response.data.userId
         });
         navigate("/admin")
       } else if(response.data.roles[0] === 'DOCTOR') {

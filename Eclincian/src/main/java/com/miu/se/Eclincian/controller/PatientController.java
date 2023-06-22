@@ -2,8 +2,9 @@ package com.miu.se.Eclincian.controller;
 
 import com.miu.se.Eclincian.entity.Appointment;
 import com.miu.se.Eclincian.entity.Bill;
-import com.miu.se.Eclincian.entity.MedicalRecord;
 import com.miu.se.Eclincian.entity.dto.response.AppointmentResponseDTO;
+import com.miu.se.Eclincian.entity.dto.response.DoctorResponseDTO;
+import com.miu.se.Eclincian.entity.dto.response.MedicalRecordResponseDTO;
 import com.miu.se.Eclincian.service.AppointmentService;
 import com.miu.se.Eclincian.service.PatientService;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,6 @@ public class PatientController {
 
     private final PatientService patientService;
     private final AppointmentService appointmentService;
-
 
 
     public PatientController(PatientService patientService,
@@ -74,13 +74,17 @@ public class PatientController {
 
 
     @GetMapping("/medical-record")
-    public MedicalRecord getAllMedicalRecordForCurrentPatient() {
-        return patientService.getMedicalRecord();
+    public ResponseEntity<MedicalRecordResponseDTO> getAllMedicalRecordForCurrentPatient() {
+        return new ResponseEntity<>(patientService.getMedicalRecord(), HttpStatus.OK);
     }
 
     @GetMapping("/get-bills")
-    public List<Bill> getAllBills() {
-        return patientService.getAllBillsBelongsToCurrentPatient();
+    public ResponseEntity<List<Bill>> getAllBills() {
+        return new ResponseEntity<>(patientService.getAllBillsBelongsToCurrentPatient(), HttpStatus.OK);
     }
 
+    @GetMapping("/doctors")
+    public ResponseEntity<List<DoctorResponseDTO>> getAllDoctors() {
+        return new ResponseEntity<>(patientService.getAllDoctors(), HttpStatus.OK);
+    }
 }

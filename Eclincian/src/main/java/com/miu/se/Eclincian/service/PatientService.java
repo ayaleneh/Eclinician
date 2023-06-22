@@ -1,10 +1,9 @@
 package com.miu.se.Eclincian.service;
 
-import com.miu.se.Eclincian.entity.Appointment;
-import com.miu.se.Eclincian.entity.Bill;
-import com.miu.se.Eclincian.entity.MedicalRecord;
-import com.miu.se.Eclincian.entity.Patient;
+import com.miu.se.Eclincian.entity.*;
 import com.miu.se.Eclincian.entity.dto.response.AppointmentResponseDTO;
+import com.miu.se.Eclincian.entity.dto.response.DoctorResponseDTO;
+import com.miu.se.Eclincian.entity.dto.response.MedicalRecordResponseDTO;
 
 import java.util.List;
 
@@ -21,7 +20,9 @@ public interface PatientService {
     public List<AppointmentResponseDTO> getAllAppointments();
     public List<AppointmentResponseDTO> getAllUpComingAppointments();
 
-    public MedicalRecord getMedicalRecord();
+    public MedicalRecordResponseDTO getMedicalRecord();
 
     public List<Bill> getAllBillsBelongsToCurrentPatient();
+
+    public List<DoctorResponseDTO> getAllDoctors();
 }

@@ -4,6 +4,8 @@ import com.miu.se.Eclincian.entity.Appointment;
 import com.miu.se.Eclincian.entity.MedicalRecord;
 import com.miu.se.Eclincian.entity.Patient;
 import com.miu.se.Eclincian.service.DoctorService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,29 +21,29 @@ public class DoctorController {
     }
 
     @GetMapping("/appointments")
-    public List<Appointment> getAllAppointments() {
-        return doctorService.getAllAppointmentsForCurrentDoctor();
+    public ResponseEntity<List<Appointment>> getAllAppointments() {
+        return new ResponseEntity<>(doctorService.getAllAppointmentsForCurrentDoctor(), HttpStatus.OK);
     }
 
     @GetMapping("/upcoming")
-    public List<Appointment> getAllUpComingAppointment() {
-        return doctorService.getAllUpComingAppointments();
+    public ResponseEntity<List<Appointment>> getAllUpComingAppointment() {
+        return new ResponseEntity<>(doctorService.getAllUpComingAppointments(),HttpStatus.OK);
     }
 
     @GetMapping("/patient-list")
-    public List<Patient> getAllPatients() {
-        return doctorService.getAllPatientBelongsToCurrentDoctor();
+    public ResponseEntity<List<Patient>> getAllPatients() {
+        return new ResponseEntity<>(doctorService.getAllPatientBelongsToCurrentDoctor(),HttpStatus.OK);
     }
 
     @PostMapping("/{doctorId}/add-medical-record/{patientId}")
-    public MedicalRecord addMedicalRecord(@PathVariable Long doctorId,
+    public ResponseEntity<MedicalRecord> addMedicalRecord(@PathVariable Long doctorId,
                                           @PathVariable Long patientId,
                                           @RequestBody MedicalRecord medicalRecord) {
-        return doctorService.addMedicalRecordForSelectedPatient(doctorId, patientId, medicalRecord);
+        return  new ResponseEntity<>(doctorService.addMedicalRecordForSelectedPatient(doctorId, patientId, medicalRecord),HttpStatus.CREATED);
     }
 
     @GetMapping("/get-medical-record/{patientId}")
-    public List<MedicalRecord> getAllMedicalRecord(@PathVariable Long patientId) {
-        return doctorService.getAllMedicalRecordForSelectedPatient(patientId);
+    public ResponseEntity<List<MedicalRecord>> getAllMedicalRecord(@PathVariable Long patientId) {
+        return new ResponseEntity<>(doctorService.getAllMedicalRecordForSelectedPatient(patientId),HttpStatus.OK);
     }
 }

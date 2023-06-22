@@ -51,54 +51,57 @@ public class AdminController {
     }
 
     @GetMapping("/doctors")
-    public List<Doctor> getAllDoctors() {
-        return doctorService.getAllDoctors();
+    public ResponseEntity<List<Doctor>> getAllDoctors() {
+        return new ResponseEntity<>(doctorService.getAllDoctors(), HttpStatus.OK);
     }
 
     @GetMapping("/doctor/{doctorId}")
-    public Doctor getDoctorById(@PathVariable Long doctorId) {
-        return doctorService.getDoctorById(doctorId);
+    public ResponseEntity<Doctor> getDoctorById(@PathVariable Long doctorId) {
+        return new ResponseEntity<>(doctorService.getDoctorById(doctorId), HttpStatus.OK);
     }
 
     @PostMapping("/doctor")
-    public Doctor addNewDoctor(@RequestBody Doctor doctor) {
-        return doctorService.createDoctor(doctor);
+    public ResponseEntity<Doctor> addNewDoctor(@RequestBody Doctor doctor) {
+        return new ResponseEntity<>(doctorService.createDoctor(doctor), HttpStatus.CREATED);
     }
 
     @PutMapping("/doctor/{doctorId}")
-    public Doctor updateExistingDoctor(@PathVariable Long doctorId, @RequestBody Doctor doctor) {
-        return doctorService.updateDoctor(doctorId, doctor);
+    public ResponseEntity<Doctor> updateExistingDoctor(@PathVariable Long doctorId, @RequestBody Doctor doctor) {
+        return new ResponseEntity<>(doctorService.updateDoctor(doctorId, doctor), HttpStatus.OK);
     }
 
     @DeleteMapping("/doctor/{doctorId}")
-    public void deleteDoctorById(@PathVariable Long doctorId) {
+    public ResponseEntity<?> deleteDoctorById(@PathVariable Long doctorId) {
         doctorService.deleteDoctor(doctorId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
+
     //Patient CRUD
 
     @GetMapping("/patients")
-    public List<Patient> getAllPatients() {
-        return patientService.getAllPatients();
+    public ResponseEntity<List<Patient>> getAllPatients() {
+        return new ResponseEntity<>(patientService.getAllPatients(),HttpStatus.OK);
     }
 
     @GetMapping("/patients/{patientId}")
-    public Patient getPatientsById(@PathVariable Long patientId) {
-        return patientService.getPatientById(patientId);
+    public ResponseEntity<Patient> getPatientsById(@PathVariable Long patientId) {
+        return new ResponseEntity<>(patientService.getPatientById(patientId),HttpStatus.OK);
     }
 
     @PostMapping("/patients")
-    public Patient addNewPatient(@RequestBody Patient patient) {
-        return patientService.createPatient(patient);
+    public ResponseEntity<Patient> addNewPatient(@RequestBody Patient patient) {
+        return new ResponseEntity<>(patientService.createPatient(patient),HttpStatus.CREATED);
     }
 
     @PutMapping("/patient/{patientId}")
-    public Patient updateExisingPatient(@PathVariable Long patientId, @RequestBody Patient patient) {
-        return patientService.updatePatient(patientId, patient);
+    public ResponseEntity<Patient> updateExisingPatient(@PathVariable Long patientId, @RequestBody Patient patient) {
+        return new ResponseEntity<>(patientService.updatePatient(patientId, patient),HttpStatus.OK);
     }
 
     @DeleteMapping("/patient/{patientId}")
-    public void deletePatientById(@PathVariable Long patientId) {
+    public ResponseEntity<?> deletePatientById(@PathVariable Long patientId) {
         patientService.deletePatient(patientId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
