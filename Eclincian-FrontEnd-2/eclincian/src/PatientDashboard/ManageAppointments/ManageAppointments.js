@@ -6,6 +6,7 @@ import AppointmentEditForm from '../AppointmentForm/AppointmentEditForm';
 import UserContext from "../../context/UserContext";
 import Cookies from "universal-cookie";
 import NewAppointmentForm from '../AppointmentForm/NewAppointmentForm'
+import logo from '../../images/logo-color.png'
 
 
 
@@ -144,7 +145,7 @@ const ManageAppointments = () => {
     return <AppointmentEditForm appointment={selectedAppointment} onAppointmentUpdated={() => setSelectedOption('all')} />
   };
 
-  const maindashboard =()=>{
+  const maindashboard = () => {
     navigate("/patient")
   }
   const displayCreateAppointmentForm = () => {
@@ -179,17 +180,17 @@ const ManageAppointments = () => {
   return (
     <div className="manage-appointments">
       <nav>
-        <img src={"https://source.unsplash.com/100x100?dental,logo"} alt="Company Logo" onClick={handleLogoClick} />
+        <img src={logo} alt="Company Logo" onClick={handleLogoClick} />
         <h1>United Dental Surgeries</h1>
       </nav>
       <h2>Manage Your Appointments</h2>
       <div className="appointment-buttons">
-        <button onClick={() => handleButtonClick("main")}>Main Dashboard</button>
-        <button onClick={() => handleButtonClick("all")}>View All Appointments</button>
-        <button onClick={() => handleButtonClick("upcoming")}>View Upcoming Appointments</button>
-        <button onClick={() => handleButtonClick("create")}>Create Appointment</button>
-
+        <button className={selectedOption === "main" ? "active" : "non-active"} onClick={() => handleButtonClick("main")}>Main Dashboard</button>
+        <button className={selectedOption === "all" ? "active" : "non-active"} onClick={() => handleButtonClick("all")}>View All Appointments</button>
+        <button className={selectedOption === "upcoming" ? "active" : "non-active"} onClick={() => handleButtonClick("upcoming")}>View Upcoming Appointments</button>
+        <button className={selectedOption === "create" ? "active" : "non-active"} onClick={() => handleButtonClick("create")}>Create Appointment</button>
       </div>
+
       <div className="appointment-details">
         {selectedOption === "main" && maindashboard()}
         {selectedOption === "all" && displayAllAppointments()}

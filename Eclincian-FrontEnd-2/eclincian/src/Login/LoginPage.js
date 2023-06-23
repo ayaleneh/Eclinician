@@ -52,6 +52,7 @@ import UserContext from "../context/UserContext";
 import axiosInstance from "../api/axiosInstance";
 import Cookies from 'universal-cookie';
 import '../Login/Login.css'
+import logo from '../images/logo-color.png'
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -123,6 +124,14 @@ const LoginPage = () => {
   };
 
   return (
+    <div className="divlogin">
+      <nav className="nav">
+        <img src={logo} alt="United Dental Surgeries" className="logo" />
+        <h1>United Dental Surgeries</h1>
+        <div className="nav-right">
+        
+        </div>
+      </nav>
     <div className="container">
       <h1 className="title">Login</h1>
       <form onSubmit={handleSubmit}>
@@ -147,11 +156,9 @@ const LoginPage = () => {
         />
         {passwordError && <p className="error-text">{passwordError}</p>}
         <button type="submit">Sign In</button>
-        <div className="links">
-          <Link to={"/forgot-password"}>Forgot Password?</Link>
-          <Link to={"/register"}>Not Registered?</Link>
-        </div>
+        
       </form>
+    </div>
     </div>
   );
 };
