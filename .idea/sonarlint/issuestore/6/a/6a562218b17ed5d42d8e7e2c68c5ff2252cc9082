@@ -1,0 +1,21 @@
+
+s
+java:S1192@"QDefine a constant instead of duplicating this literal "/api/v1/admin/**" 3 times.(ÿó¿Šúÿÿÿÿ8ªµ‹1
+p
+java:S1192;"SDefine a constant instead of duplicating this literal "/api/v1/patient/**" 4 times.(›¾Ú«8İ¨¶‹1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Á‹ÈŸÿÿÿÿÿ8­µ‹1
+]	java:S125"<This block of commented-out lines of code should be removed.(›”Ë§üÿÿÿÿ8Ëµ‹1
+j
+java:S5738/"HRemove this call to a deprecated method, it has been marked for removal.(÷°Çîşÿÿÿÿ8Ûµ‹1
+j
+java:S5738/"HRemove this call to a deprecated method, it has been marked for removal.(÷°Çîşÿÿÿÿ8Üµ‹1
+j
+java:S5738/"HRemove this call to a deprecated method, it has been marked for removal.(÷°Çîşÿÿÿÿ8Üµ‹1
+e
+java:S57380"HRemove this call to a deprecated method, it has been marked for removal.(ÏğÅô8Üµ‹1
+j
+java:S5738J"HRemove this call to a deprecated method, it has been marked for removal.(Åúßµûÿÿÿÿ8¨©¶‹1
+e
+java:S5738K"HRemove this call to a deprecated method, it has been marked for removal.(×íÑø8¨©¶‹1
+N
+java:S1611U"1Remove the parentheses around the "web" parameter(ºÑ„œ8åµ‹1

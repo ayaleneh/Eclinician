@@ -1,0 +1,7 @@
+
+h	java:S112˜"FDefine and throw a dedicated exception instead of using a generic one.(Œ•‹¸øÿÿÿÿ8ûœëÍ1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Àº­›øÿÿÿÿ8€ëÍ1
+x
+java:S3655P"\Call "optionalDoctor.isPresent()" or "!optionalDoctor.isEmpty()" before accessing the value.(ÃöÔx8ªëÍ1
+O
+java:S1068"2Remove this unused "patientService" private field.(¯¢è¾8ÌëÍ1
